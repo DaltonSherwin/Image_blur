@@ -22,8 +22,7 @@ class Image
     @matrix.each_with_index do | row, row_index |
       row.each_with_index do | column, column_index |      
         if @matrix[row_index][column_index] == 1
-          #add row index and column index
-          #to container
+          container << [row_index, column_index]
         end
       end
     end
@@ -31,10 +30,10 @@ class Image
 
         container.each do |row_index, column_index|
 
-          @matrix[row_index-1][column_index] = 1
-          @matrix[row_index][column_index-1] = 1
-          @matrix[row_index][column_index+1] = 1
-          @matrix[row_index+1][column_index] = 1
+          @matrix[row_index-1][column_index] = 1 unless row_index == 0
+          @matrix[row_index][column_index-1] = 1 unless column_index == 0
+          @matrix[row_index][column_index+1] = 1 unless column_index >= 5
+          @matrix[row_index+1][column_index] = 1 unless row_index >= 3
         end
   end
 end
@@ -42,7 +41,7 @@ end
 
  image = Image.new([
   [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 1],
   [0, 1, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0]
 ])
