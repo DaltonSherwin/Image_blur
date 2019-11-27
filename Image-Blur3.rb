@@ -14,8 +14,16 @@ class Image
     end
   end
 
-  def blur
-    container = []
+  def blur(num)
+    i = 1
+    while i <= num do 
+     blur_helper(num)
+      i = i+1
+    end
+  end
+
+  def blur_helper(num)
+     container = []
     @matrix.each_with_index do | row, row_index |
       row.each_with_index do | column, column_index |      
         if @matrix[row_index][column_index] == 1
@@ -36,19 +44,17 @@ class Image
 end
 
 
+
  image = Image.new([
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1]
+  [0, 0, 0, 0, 0, 0, 0]
 ])
 
-
-image.blur()
-image.blur()
-image.blur()
+image.blur(3)
 image.output_image()
